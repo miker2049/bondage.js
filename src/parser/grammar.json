@@ -16,10 +16,10 @@
   "start": ["node"],
 
   "bnf": {
+
     "node": [
       ["statements EndOfInput", "JSON.stringify($1, null, \"  \"); return $1;"]
     ],
-
     "statements": [
       ["statements conditionalStatement", "$$ = $1.concat([$2]);"],
       ["statements statement", "$$ = $1.concat([$2]);"],

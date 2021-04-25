@@ -4,9 +4,9 @@
 'use strict';
 
 const chai = require('chai');
-const parser = require('../src/parser/parser.js').parser;
+const parser = require('../src/parser/parser-node.js').parser;
 const nodes = require('../src/parser/nodes.js');
-parser.yy = nodes;
+parser.yy = nodes
 
 const expect = chai.expect;
 

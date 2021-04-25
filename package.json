@@ -1,18 +1,19 @@
 {
   "name": "bondage",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Yarn parser for Javascript",
-  "main": "src/bondage.js",
+  "main": "dist/bondage.min.js",
   "scripts": {
-    "test": "node node_modules/mocha/bin/mocha tests --recursive",
+    "test": "NODE_ENV=node node node_modules/mocha/bin/mocha tests --recursive",
     "lint": "node_modules/.bin/eslint .",
     "build": "yarn run compileParser && yarn run bundle",
-    "bundle": "esbuild --bundle --minify src/bondage.js --external:fs --external:path --outfile=dist/bondage.min.js",
-    "compileParser": "jison src/parser/grammar.json -o src/parser/parser.js -m commonjs"
+    "bundle": "esbuild --define:process.env.NODE_ENV=\\\"browser\\\" --bundle --minify --platform=browser --target=es6 src/bondage.js --outfile=dist/bondage.min.js",
+    "compileParser": "jison src/parser/grammar.json -o src/parser/parser-browser.js -m js && jison src/parser/grammar.json -o src/parser/parser-node.js -m commonjs"
   },
   "bin": {
     "bondage": "src/bin/bondage.js"
   },
+  "types": "bondage.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jhayley/bondage.js.git"
@@ -31,8 +32,8 @@
     "eslint-plugin-import": "^2.3.0",
     "eslint-plugin-jsx-a11y": "^5.0.3",
     "eslint-plugin-react": "^7.0.1",
-    "jison": "^0.4.17",
-    "mocha": "^3.4.2"
+    "mocha": "^3.4.2",
+    "jison": "^0.4.18"
   },
   "dependencies": {
     "commander": "^2.9.0",

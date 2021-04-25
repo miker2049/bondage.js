@@ -1,9 +1,15 @@
 'use strict';
-
-const parser = require('./parser/parser.js').parser;
-const yy = require('./parser/nodes')
+let parser
+if (process.env.NODE_ENV === 'browser') {
+  console.log('browser')
+  parser = require('./parser/parser-browser.js').parser;
+} else {
+  console.log('node')
+  parser = require('./parser/parser-node.js').parser;
+}
 const Lexer = require('./lexer/lexer')
 
+const yy = require('../src/parser/nodes.js');
 parser.lexer = new Lexer()
 parser.yy = yy
 

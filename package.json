@@ -7,7 +7,7 @@
     "test": "NODE_ENV=node node node_modules/mocha/bin/mocha tests --recursive",
     "lint": "node_modules/.bin/eslint .",
     "build": "yarn run compileParser && yarn run bundle",
-    "bundle": "esbuild  --bundle --minify --platform=browser --target=es6 src/bondage.js --outfile=dist/bondage.min.js",
+    "bundle": "rollup --config rollup.config.js",
     "compileParser": "jison -p slr src/parser/grammar.json -m commonjs -o src/parser/parser.js"
   },
   "bin": {
@@ -28,7 +28,6 @@
     "@rollup/plugin-alias": "^3.1.2",
     "@rollup/plugin-commonjs": "^18.0.0",
     "chai": "^4.0.1",
-    "esbuild": "^0.11.14",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.0.1",
     "eslint-plugin-import": "^2.3.0",

@@ -6,8 +6,9 @@
   "scripts": {
     "test": "node node_modules/mocha/bin/mocha tests --recursive",
     "lint": "node_modules/.bin/eslint .",
-    "build": "node_modules/.bin/gulp",
-    "compileParser": "jison src/parser/grammar.json -o src/parser/parser.js -m cjs"
+    "build": "yarn run compileParser && yarn run bundle",
+    "bundle": "esbuild --bundle --minify src/bondage.js --external:fs --external:path --outfile=dist/bondage.min.js",
+    "compileParser": "jison src/parser/grammar.json -o src/parser/parser.js -m commonjs"
   },
   "bin": {
     "bondage": "src/bin/bondage.js"
@@ -24,6 +25,7 @@
   "homepage": "https://github.com/jhayley/bondage.js#readme",
   "devDependencies": {
     "chai": "^4.0.1",
+    "esbuild": "^0.11.14",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.0.1",
     "eslint-plugin-import": "^2.3.0",

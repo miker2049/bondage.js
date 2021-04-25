@@ -562,7 +562,7 @@ var parser = {
     //   parser table compression mode: ... 2
     //   export debug tables: ............. false
     //   export *all* tables: ............. false
-    //   module type: ..................... commonjs
+    //   module type: ..................... js
     //   parser engine type: .............. slr
     //   output main() in the module: ..... true
     //   has user-specified main(): ....... false
@@ -2769,13 +2769,3 @@ return new Parser();
 })();
 
         
-
-
-if (typeof require !== 'undefined' && typeof exports !== 'undefined') {
-  exports.parser = parser;
-  exports.Parser = parser.Parser;
-  exports.parse = function () {
-    return parser.parse.apply(parser, arguments);
-  };
-  
-}

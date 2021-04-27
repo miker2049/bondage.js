@@ -7,7 +7,7 @@
     "test": "NODE_ENV=node node node_modules/mocha/bin/mocha tests --recursive",
     "lint": "node_modules/.bin/eslint .",
     "build": "yarn run compileParser && yarn run bundle",
-    "bundle": "yarn esbuild --minify --bundle src/runner.js --format=cjs --outfile=dist/bondage.min.js",
+    "bundle": "rollup -c rollup.config.js",
     "compileParser": "jison -p slr src/parser/grammar.json -m js -o src/parser/parser.js"
   },
   "bin": {

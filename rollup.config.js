@@ -1,4 +1,5 @@
-import alias from '@rollup/plugin-alias';
+import { terser } from "rollup-plugin-terser";
+
 import commonjs from '@rollup/plugin-commonjs';
 
 export default {
@@ -6,9 +7,11 @@ export default {
   output: {
     file: 'dist/bondage.min.js',
     name: 'bondage',
+    compact: true,
     format: 'umd'
   },
   plugins: [
-    commonjs()
+    commonjs(),
+    terser()
   ]
 };
